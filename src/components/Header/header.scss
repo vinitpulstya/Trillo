@@ -45,7 +45,7 @@
             transition: all .2s;
             margin-right: -3.25rem;
 
-            &:focus{
+            &:focus {
                 outline: none;
                 width: 100%;
                 // background-color: var(--color-grey-light-3);
@@ -57,7 +57,7 @@
             }
         }
 
-        &__input:focus + &__button {
+        &__input:focus+&__button {
             background-color: var(--color-grey-light-3);
         }
 
@@ -82,13 +82,14 @@
         }
     }
 
-    .user-nav{
+    .user-nav {
+        position: relative;
         align-self: stretch;
 
         display: flex;
         align-items: center;
 
-        & > * {
+        &>* {
             padding: 2rem;
             cursor: pointer;
             height: 100%;
@@ -100,12 +101,47 @@
             }
         }
 
-        & > *:hover {
+        &>*:hover {
             background-color: var(--color-grey-light-2);
         }
 
         &__icon-box {
             position: relative;
+
+            &:hover + .nav-content {
+                visibility: visible;
+                height: 15rem;
+            }
+        }
+
+        .nav-content {
+            position: absolute;
+            background-color: #fff;
+            width: 25rem;
+            max-width: 25rem;
+            height: 0;
+            top: 7rem;
+            left: -.25rem;
+            padding: 4rem;
+            overflow: auto;
+            visibility: hidden;
+            transition: height .2s;
+            z-index: 15;
+
+            &__list {
+                list-style: none;
+
+                &-item {
+                    padding: .5rem;
+                    border-bottom: var(--line);
+                    color: var(--color-primary);
+                }
+            }
+
+            &:hover {
+                visibility: visible;
+                height: 15rem;
+            }
         }
 
         &__icon {
@@ -132,7 +168,7 @@
 
 
         &__user-photo {
-            height:3.75rem;
+            height: 3.75rem;
             border-radius: 50%;
             margin-right: 1rem;
         }
