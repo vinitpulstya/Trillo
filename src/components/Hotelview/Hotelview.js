@@ -7,6 +7,8 @@ import friend1 from '../../img/user-3.jpg';
 import friend2 from '../../img/user-4.jpg';
 import friend3 from '../../img/user-5.jpg';
 import friend4 from '../../img/user-6.jpg';
+import user1 from '../../img/user-1.jpg';
+import user2 from '../../img/user-2.jpg';
 
 function Hotelview() {
     return (
@@ -72,34 +74,34 @@ function Hotelview() {
                             </svg>
                             Close to the beach</li>
                         <li className='list__item'>
-                        <svg className='list__item-arrow'>
+                            <svg className='list__item-arrow'>
                                 <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
                             </svg>
                             Breakfast included</li>
                         <li className='list__item'>
-                        <svg className='list__item-arrow'>
+                            <svg className='list__item-arrow'>
                                 <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
                             </svg>
                             Free airport shuttle</li>
                         <li className='list__item'><svg className='list__item-arrow'>
-                                <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
-                            </svg>
+                            <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
+                        </svg>
                             Free WiFi in all rooms</li>
                         <li className='list__item'><svg className='list__item-arrow'>
-                                <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
-                            </svg>
+                            <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
+                        </svg>
                             Air conditioning and heating</li>
                         <li className='list__item'><svg className='list__item-arrow'>
-                                <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
-                            </svg>
+                            <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
+                        </svg>
                             Pets allowed</li>
                         <li className='list__item'><svg className='list__item-arrow'>
-                                <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
-                            </svg>
+                            <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
+                        </svg>
                             We speak all languages</li>
                         <li className='list__item'><svg className='list__item-arrow'>
-                                <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
-                            </svg>
+                            <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
+                        </svg>
                             Perfect for families</li>
                     </ul>
                     <div className='recommend'>
@@ -115,8 +117,46 @@ function Hotelview() {
                     </div>
                 </div>
                 <div className='user-reviews'>
-                    user reviews
+                    <figure className='review'>
+                        <blockquote className='review__text'>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga doloremque architecto dicta animi, totam, itaque officia ex.
+                        </blockquote>
+                        <figcaption className='review__user'>
+                            <img src={user1} alt='user1' className='review__photo'></img>
+                            <div className='review__user-box'>
+                                <p className='review__user-name'>Nick Smith</p>
+                                <p className='review__user-date'>Feb 23rd, 2017</p>
+                            </div>
+                            <div className='review__rating'>7.8</div>
+                        </figcaption>
+                    </figure>
+                    <figure className='review'>
+                        <blockquote className='review__text'>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga doloremque architecto dicta animi.
+
+                        </blockquote>
+                        <figcaption className='review__user'>
+                            <img src={user2} alt='user2' className='review__photo'></img>
+                            <div className='review__user-box'>
+                                <p className='review__user-name'>Mary Thomas</p>
+                                <p className='review__user-date'>Sept 13th, 2017</p>
+                            </div>
+                            <div className='review__rating'>9.3</div>
+                        </figcaption>
+                    </figure>
+
+                    <button className='btn-inline'>Show all <span>&rarr;</span></button>
                 </div>
+            </div>
+            {/* CTA is call to action */}
+            <div className='cta'>
+                <h2 className='cta__book-now'>
+                    Good news! We have 4 rooms available for your selected dates!
+                </h2>
+                <button className='btn'>
+                    <span className='btn__visible'>Book now</span>
+                    <span className='btn__invisible'>Only 4 rooms left</span>
+                </button>
             </div>
 
         </main>
