@@ -1,3 +1,5 @@
+@use '/src/index';
+
 .hotel-view {
     background-color: #fff;
     flex: 1;
@@ -22,6 +24,16 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             padding: 1.5rem 3rem;
+
+            @media only screen and (max-width:index.$bp-small) {
+                font-size: 1.8rem;
+                padding: 1.25rem 2rem;
+            }
+
+            @media only screen and (max-width:index.$bp-mobile-port) {
+                font-size: 1.5rem;
+                padding: 1rem 1.5rem;
+            }
         }
 
         &__stars {
@@ -58,17 +70,39 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+
+            @media only screen and (max-width:index.$bp-small) {
+                padding: 0 1.5rem;
+            }
         }
 
         &__rating-average {
             font-size: 2.25rem;
             font-weight: 300;
             margin-bottom: -3px;
+
+            @media only screen and (max-width:index.$bp-small) {
+                font-size: 1.8rem;
+            }
+
+            @media only screen and (max-width:index.$bp-mobile-port) {
+                // font-size: 1.5rem;
+            }
         }
 
         &__rating-count {
             font-size: .8rem;
             text-transform: uppercase;
+
+            @media only screen and (max-width:index.$bp-small) {
+                font-size: .5rem;
+            }
+
+            @media only screen and (max-width:index.$bp-mobile-port) {
+                margin-top: .5rem;
+                text-align: center;
+            }
+
         }
     }
 
@@ -109,12 +143,30 @@
         border-bottom: var(--line);
         font-size: 1.4rem;
 
+        @media only screen and (max-width:index.$bp-medium) {
+           padding: 3rem;
+        }
+
+        @media only screen and (max-width:index.$bp-small) {
+            flex-direction: column;
+        }
+
         .description {
             background-color: #fff;
             box-shadow: var(--shadow-light);
             padding: 3rem;
             flex: 0 0 60%;
             margin-right: 4.5rem;
+
+            @media only screen and (max-width:index.$bp-medium) {
+                padding: 2rem;
+                margin-right: 3rem;
+            }
+
+            @media only screen and (max-width:index.$bp-small) {
+                margin-right: 0;
+                margin-bottom: 3rem;
+            }
 
             .paragraph:not(:last-of-type) {
                 margin-bottom: 2rem;
@@ -160,7 +212,9 @@
                     margin-right: auto;
                 }
 
-                &__friends {}
+                &__friends {
+                    display: flex;
+                }
 
                 &__photo {
                     box-sizing: content-box;
@@ -170,7 +224,7 @@
                     border: 3px solid #fff;
 
                     &:not(:last-child) {
-                        margin-right: -1.5rem;
+                        margin-right: -2rem;
                     }
                 }
             }
@@ -190,6 +244,11 @@
                 margin-bottom: 3.5rem;
                 position: relative;
                 overflow: hidden;
+
+                @media only screen and (max-width:index.$bp-medium) {
+                    padding: 2rem;
+                    margin-bottom: 3rem;
+                }
 
                 &__text {
                     margin-bottom: 2rem;
@@ -251,6 +310,10 @@
         padding: 3.5rem 0;
         text-align: center;
 
+        @media only screen and (max-width:index.$bp-medium) {
+            padding: 2.5rem 0;
+        }
+
         &__book-now {
             font-size: 2rem;
             font-weight: 300;
@@ -290,7 +353,7 @@
             &:hover {
                 background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
                 cursor: pointer;
-                
+
                 .btn__visible {
                     transform: translateY(100%);
                 }

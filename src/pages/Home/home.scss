@@ -1,3 +1,8 @@
+@use '/src/index';
 .content {
     display: flex;
+
+    @media only screen and (max-width:index.$bp-medium) {
+        flex-direction: column;
+    }
 }
