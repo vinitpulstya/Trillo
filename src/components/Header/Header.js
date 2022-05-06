@@ -2,12 +2,14 @@ import './header.scss';
 import logo from '../../img/logo.png';
 import sprite from '../../img/sprite.svg';
 import user from '../../img/user.jpg';
-// import iconMagnifyingGlass from '../../img/SVG/magnifying-glass.svg';
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  let navigate = useNavigate();
+
   return (
     <header className='header'>
-      <img src={logo} alt='trillo logo' className='logo' />
+      <img src={logo} alt='trillo logo' className='logo' onClick={() => navigate('')}/>
       <form action='#' className='search'>
         <input type='text' className='search__input' placeholder='Search hotels' />
         <button className='search__button'>

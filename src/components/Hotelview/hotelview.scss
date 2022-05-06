@@ -46,7 +46,14 @@
         &__icon-location {
             width: 1.75rem;
             height: 1.75rem;
-            fill: var(--color-primary);
+            
+            &-selected {
+                fill: var(--color-primary);
+            }
+
+            &-unselected {
+                fill: var(--color-grey-dark-3);
+            }
         }
 
         &__location {

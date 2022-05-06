@@ -10,47 +10,76 @@ import friend4 from '../../img/user-6.jpg';
 import user1 from '../../img/user-1.jpg';
 import user2 from '../../img/user-2.jpg';
 
+const images = [hotel1, hotel2, hotel3];
+const imageGallery = images.map((image, index) => {
+    return (
+        <figure key={index} className='gallery__item'>
+            <img src={image} alt={`hotel ${index + 1}`} className='gallery__photo' />
+        </figure>
+    )
+});
+
+const hotel = {
+    name: 'Hotel Las Palmas',
+    stars: 4.2,
+    location: 'Kurkshetra, India',
+    features: ['Close to the beach', 'Breakfast included', 'Free airport shuttle', 'Free WiFi in all rooms', 'Air conditioning and heating', 'Pets allowed', 'We speak all languages', 'Perfect for families']
+}
+
+const getStars = () => {
+    const selectedStars = Math.round(hotel.stars);
+    const unselectedStars = 5 - selectedStars;
+
+    let starsArr = [];
+    for (let i = 0; i < selectedStars; i++) {
+        starsArr.push(
+            <svg key={starsArr.length} className='overview__icon-star overview__icon-star-selected'>
+                <use xlinkHref={`${sprite}#icon-star`}></use>
+            </svg>
+        )
+    }
+
+    for (let i = 0; i < unselectedStars; i++) {
+        starsArr.push(
+            <svg key={starsArr.length} className='overview__icon-star overview__icon-star-unselected'>
+                <use xlinkHref={`${sprite}#icon-star`}></use>
+            </svg>
+        )
+    }
+    return starsArr;
+}
+
+const amenities = hotel.features.map((feature, index) => {
+        return (
+            <li key={index} className='list__item'>
+                <svg className='list__item-arrow'>
+                    <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
+                </svg>
+                {feature}
+            </li>
+        )
+    })
+
+
 function Hotelview() {
     return (
         <main className='hotel-view'>
             <div className='gallery'>
-                <figure className='gallery__item'>
-                    <img src={hotel1} alt='hotel 1' className='gallery__photo' />
-                </figure>
-                <figure className='gallery__item'>
-                    <img src={hotel2} alt='hotel 2' className='gallery__photo' />
-                </figure>
-                <figure className='gallery__item'>
-                    <img src={hotel3} alt='hotel 3' className='gallery__photo' />
-                </figure>
+                {imageGallery}
             </div>
 
             <div className='overview'>
                 <h1 className='overview__heading'>
-                    Hotel Las Palmas
+                    {hotel.name}
                 </h1>
                 <div className='overview__stars'>
-                    <svg className='overview__icon-star'>
-                        <use xlinkHref={`${sprite}#icon-star`}></use>
-                    </svg>
-                    <svg className='overview__icon-star'>
-                        <use xlinkHref={`${sprite}#icon-star`}></use>
-                    </svg>
-                    <svg className='overview__icon-star'>
-                        <use xlinkHref={`${sprite}#icon-star`}></use>
-                    </svg>
-                    <svg className='overview__icon-star'>
-                        <use xlinkHref={`${sprite}#icon-star`}></use>
-                    </svg>
-                    <svg className='overview__icon-star'>
-                        <use xlinkHref={`${sprite}#icon-star`}></use>
-                    </svg>
+                    {getStars()}
                 </div>
                 <div className='overview__location'>
                     <svg className='overview__icon-location'>
                         <use xlinkHref={`${sprite}#icon-location-pin`}></use>
                     </svg>
-                    <button className='btn-inline'>Kurukshetra, India</button>
+                    <button className='btn-inline'>{hotel.location}</button>
                 </div>
 
                 <div className='overview__rating'>
@@ -68,41 +97,7 @@ function Hotelview() {
                         Accusantium cumque, quas, ut corporis incidunt deserunt quae architecto voluptate delectus, inventore iure aliquid aliquam.
                     </p>
                     <ul className='list'>
-                        <li className='list__item'>
-                            <svg className='list__item-arrow'>
-                                <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
-                            </svg>
-                            Close to the beach</li>
-                        <li className='list__item'>
-                            <svg className='list__item-arrow'>
-                                <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
-                            </svg>
-                            Breakfast included</li>
-                        <li className='list__item'>
-                            <svg className='list__item-arrow'>
-                                <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
-                            </svg>
-                            Free airport shuttle</li>
-                        <li className='list__item'><svg className='list__item-arrow'>
-                            <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
-                        </svg>
-                            Free WiFi in all rooms</li>
-                        <li className='list__item'><svg className='list__item-arrow'>
-                            <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
-                        </svg>
-                            Air conditioning and heating</li>
-                        <li className='list__item'><svg className='list__item-arrow'>
-                            <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
-                        </svg>
-                            Pets allowed</li>
-                        <li className='list__item'><svg className='list__item-arrow'>
-                            <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
-                        </svg>
-                            We speak all languages</li>
-                        <li className='list__item'><svg className='list__item-arrow'>
-                            <use xlinkHref={`${sprite}#icon-chevron-thin-right`}></use>
-                        </svg>
-                            Perfect for families</li>
+                        {amenities}
                     </ul>
                     <div className='recommend'>
                         <p className='recommend__count'>
