@@ -6,10 +6,15 @@ import {
   Route
 } from 'react-router-dom';
 import Login from './pages/Login/Login';
+import Modal from './components/Modal/Modal';
+import { ModalProvider } from './services/AppstateContext';
 
 function App() {
+
   return (
     <div className='container'>
+    <ModalProvider>
+    <Modal />
       <Router>
         <Routes>
           <Route exact path='/login' element={<Login />} />
@@ -20,6 +25,7 @@ function App() {
           <Route exact path='/tours' element={<Hotel />} />
         </Routes>
       </Router>
+      </ModalProvider>
     </div>
 
   );
