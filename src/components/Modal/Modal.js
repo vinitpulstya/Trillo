@@ -1,20 +1,40 @@
 import './modal.scss';
 import { useModal } from '../../services/AppstateContext';
 import { Modal_model } from '../../models/Modal';
+import { useEffect, useState } from 'react';
 
 const Modal = () => {
-    
+
+    const [modalclass, setModalClass] = useState('modal__wrapper');
     const modal = useModal();
     const modaldata = modal.value;
     const setModaldata = modal.func;
 
+    useEffect(
+        () => {
+            setTimeout(() => 
+            {
+                if(modaldata.show) {
+                    setModalClass('modal__wrapper modal__wrapper-show');
+                } else {
+                    setModalClass('modal__wrapper');
+                }
+            }, 100)
+        }, [modal, modaldata]
+    );
+
+
     const closeModal = () => {
-        setModaldata(new Modal_model(false, '', '', ''))
+        // setModalClass('modal__wrapper'); 
+        setTimeout(
+            () => setModaldata(new Modal_model(false, '', '', '')),
+            100
+        )
     }
 
-    if (!modaldata.show) {
-        return null;
-    }
+    // if (!modaldata.show) {
+    //     return null;
+    // }
 
     const getClassName = (base_class, modaldata) => {
         let css_class = base_class;
@@ -37,7 +57,7 @@ const Modal = () => {
     }
 
     return (
-        <div className="modal__wrapper">
+        <div className={modalclass}>
             <div className='modal__box'>
                 <div className='modal__header'>
                     <h1 className='modal__header-title'>{modaldata.title}</h1>
@@ -49,7 +69,7 @@ const Modal = () => {
                     {modaldata.body}
                 </div>
                 <div className='modal__footer'>
-                    <button className='modal__footer-button' onClick={closeModal}>Close</button>
+                    <button className='modal__footer-button modal__footer-button-close' onClick={closeModal}>Close</button>
                 </div>
             </div>
         </div>

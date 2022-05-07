@@ -1,5 +1,5 @@
 .modal {
-    
+
     &__wrapper {
         position: fixed;
         left: 0;
@@ -10,6 +10,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        visibility: hidden;
+        opacity: 0;
+
+        transition: all .2s ease-in-out;
+        &-show {
+            visibility: visible;
+            opacity: 1;
+            // animation: .5s fadeIn;
+            // animation-fill-mode: forwards;
+        }
     }
 
     &__box {
@@ -30,9 +40,23 @@
     }
 
     &__footer {
+        display: flex;
+        justify-content: flex-end;
+
         &-button {
             border: none;
             cursor: pointer;
+            transition: all .2s;
+
+            &-close {
+                padding: 1rem 2rem;
+                background-color: var(--color-grey-light-1);
+                color: var(--color-grey-dark-1);
+            }
+
+            &:hover {
+                transform: scale(1.05);
+            }
         }
     }
 
@@ -44,8 +68,9 @@
         &-icon {
             align-self: center;
             // justify-self: center;
-            width: 7.5rem;
-            height: 7.5rem;
+            width: 6.5rem;
+            height: 6.5rem;
+            margin-bottom: 1rem;
             
             &-success {
                 fill: var( --color-green-dark-1);
@@ -55,5 +80,15 @@
                 fill: var(--color-error-1) ;
             }
         }
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      visibility: visible;
+      opacity: 1;
     }
 }

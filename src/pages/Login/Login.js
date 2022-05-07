@@ -3,9 +3,11 @@ import logo from '../../img/logo.png';
 import icon_success from '../../img/SVG/check_circle_outline.svg';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { signup } from '../../services/data-fetch-service';
 import { useModal } from '../../services/AppstateContext';
 import { Modal_model } from '../../models/Modal';
+import { login } from '../../services/data-fetch-service';
+import { getSHA256 } from '../../utils/utils';
+import jwt from 'jwt-decode';
 
 const Login = () => {
     const modal = useModal();
@@ -14,18 +16,23 @@ const Login = () => {
     const [formvalues, setFormvalues] = useState({
         username: '',
         password: '',
-        email: ''
     })
 
-    const login = async (e) => {
+    const login_func = async (e) => {
         e.preventDefault();
         try {
-            const response = await signup(formvalues);
-            console.log(response);
+            let hashedPass = await getSHA256(formvalues.password);
+            const response = await login(formvalues.username, hashedPass);
+            if(response.status === 200){
+                setModal(new Modal_model(true, 'Success', <><h1>Got token</h1></>, `${icon_success}#icon-check_circle_outline`));
+                let token = response.data.token;
+                // let decodedToken = jwt(token);
+            }
         } catch (error) {
-            if (error.status === 406) {
-                console.log(error.status)
-                setModal(new Modal_model(true, 'Error', <><h1>Body</h1></>, `${icon_success}#icon-cancel-circle`));
+            if (error.status === 401 || error.status === 406) {
+                setModal(new Modal_model(true, 'Error', <h1>{error.data.err}</h1>, `${icon_success}#icon-cancel-circle`));
+            } else {
+                setModal(new Modal_model(true, 'Error', <h1>Unexpected error occured.</h1>, `${icon_success}#icon-cancel-circle`));
             }
         }
     }
@@ -39,24 +46,18 @@ const Login = () => {
                         <figcaption className='loginwrapper__box-logocaption'>Trillo</figcaption>
                     </figure>
                 </div>
-                <form onSubmit={(e) => login(e)}>
-                    <div className='loginwrapper__box-forminput--wrapper'>
-                        <div className='loginwrapper__box-forminput--label'>Email</div>
-                        <input className='loginwrapper__box-forminput--field' type='text'
-                            value={formvalues.email} placeholder='Email' name='email'
-                            onChange={(e) => setFormvalues({ [e.target.name]: e.target.value, password: formvalues.password, username: formvalues.username })} />
-                    </div>
+                <form onSubmit={(e) => login_func(e)}>
                     <div className='loginwrapper__box-forminput--wrapper'>
                         <div className='loginwrapper__box-forminput--label'>Username</div>
                         <input className='loginwrapper__box-forminput--field' type='text'
-                            value={formvalues.username} placeholder='Username' name='username'
-                            onChange={(e) => setFormvalues({ [e.target.name]: e.target.value, password: formvalues.password, email: formvalues.email })} />
+                            value={formvalues.username} placeholder='Username' name='username' required maxLength='50'
+                            onChange={(e) => setFormvalues({ [e.target.name]: e.target.value, password: formvalues.password})} />
                     </div>
                     <div className='loginwrapper__box-forminputwrapper'>
                         <div className='loginwrapper__box-forminput--label'>Password</div>
                         <input className='loginwrapper__box-forminput--field' type='password'
-                            value={formvalues.password} placeholder='Password' name='password'
-                            onChange={(e) => setFormvalues({ username: formvalues.username, [e.target.name]: e.target.value, email: formvalues.email })} />
+                            value={formvalues.password} placeholder='Password' name='password' required 
+                            onChange={(e) => setFormvalues({ username: formvalues.username, [e.target.name]: e.target.value})} />
                     </div>
                     <input className='loginwrapper__box-forminput--submit' type='submit' />
                 </form>

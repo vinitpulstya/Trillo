@@ -1,0 +1,85 @@
+.signupwrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__box {
+        margin: 5rem 0;
+        padding: 3rem 1.5rem;
+        box-shadow: var(--shadow-dark);
+
+        &-logowrapper {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+            border-bottom: var(--line);
+        }
+
+        &-logo {
+            box-sizing: content-box;
+            height: 3.5rem;
+            align-self: center;
+            // padding: 3rem;
+            // border-radius: 50%;
+            // border: 1px solid black;
+        }
+
+        &-logocaption {
+            align-self: center;
+            font-size: 1.1rem;
+        }
+
+        &-forminput {
+
+            &--wrapper {
+                margin-bottom: 1rem;
+            }
+
+            &--label {
+                font-size: 1.25rem;
+                margin-bottom: .25rem;
+            }
+
+            &--field {
+                font-size: 1.5rem;
+                width: 30rem;
+                font-family: inherit;
+                color: inherit;
+                padding: 1rem 1.5rem;
+                border-radius: 2px;
+                border: none;
+                border-bottom: 3px solid transparent;
+                display: block;
+                transition: all .3s;
+
+                &:focus {
+                    outline: none;
+                    box-shadow: var(--shadow-light);
+                    border-bottom: 3px solid var(--color-primary);
+                }
+            }
+
+            &--submit {
+                margin: 2rem 0;
+                // margin-left: 5.25rem;
+                border: none;
+                background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+                padding: 1rem 3rem;
+                border-radius: 100px;
+                color: var(--color-grey-light-1);
+                transition: all .2s;
+
+                &:hover {
+                    cursor: pointer;
+                    background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
+                }
+            }
+        }
+    }
+}
+
+.signupForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,0 +1,23 @@
+.statusbar {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-success {
+        background-color: var(--color-green-dark-1);
+    }
+
+    &-error {
+        background-color: var(--color-error-1) ;
+    }
+
+    &__wrapper {
+        color: var(--color-grey-light-1);
+        padding: 1rem;
+        font-size: 1.7rem;
+    }
+
+    &__text {}
+}
