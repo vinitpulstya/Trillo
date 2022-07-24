@@ -1,0 +1,40 @@
+@use '/src/index';
+
+.content {
+    display: flex;
+
+    @media only screen and (max-width:index.$bp-medium) {
+        flex-direction: column;
+    }
+}
+
+.hotelslanding {
+    padding: 1.5rem 3rem;
+    
+    &__heading {
+        letter-spacing: 1px;
+        font-weight: 350;
+        
+        &-primary {
+            font-size: 2.25rem;
+            text-transform: uppercase;
+            padding: 1.5rem 0;
+        }
+
+        &-secondary {
+            font-size: 1.75rem;
+            padding-bottom: 1.5rem;
+        }
+
+        &-tertiary {
+            font-size: 1.5rem;
+            padding-bottom: 1.5rem;
+            font-weight: 400;
+        }
+    }
+
+    .testimonials {
+        max-height: 30rem;
+        overflow: auto;
+    }
+}

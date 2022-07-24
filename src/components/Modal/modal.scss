@@ -1,5 +1,6 @@
 .modal {
 
+
     &__wrapper {
         position: fixed;
         left: 0;
@@ -12,6 +13,7 @@
         justify-content: center;
         visibility: hidden;
         opacity: 0;
+        z-index: 10000;
 
         transition: all .2s ease-in-out;
         &-show {

@@ -4,16 +4,19 @@ import icon_success from '../../img/SVG/check_circle_outline.svg';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { signup } from '../../services/data-fetch-service';
-import { useModal } from '../../services/AppstateContext';
+import { useModal, useStatusbar } from '../../services/AppstateContext';
 import { Modal_model } from '../../models/Modal';
 import Spinner from '../../components/Spinner/Spinner';
 import { getSHA256 } from '../../utils/utils';
 import { useNavigate } from "react-router-dom";
+import { Statusbar_model } from '../../models/Statusbar_model';
 
 const Signup = () => {
     const navigate = useNavigate();
     const modal = useModal();
+    const statusbar = useStatusbar();
     const setModal = modal.func;
+    const setStatusbar = statusbar.func;
 
     const [spinner, setSpinner] = useState(false);
 
@@ -21,7 +24,7 @@ const Signup = () => {
         username: '',
         password: '',
         email: ''
-    })
+    });
 
     const signupfunc = async (e) => {
         e.preventDefault();
@@ -31,13 +34,15 @@ const Signup = () => {
             const response = await signup(formvalues.username, hashedPass, formvalues.email);
             if(response.data.username){
                 navigate('/login');
+                setStatusbar(new Statusbar_model(true, "Sign up successful! please use your credentials to login.", `${icon_success}#icon-check_circle_outline`, 'success'));
             }
         } catch (error) {
             if (error.status === 406) {
-                console.log(error)
                 setModal(new Modal_model(true, 'Error', <h1>{error.data.err}</h1>, `${icon_success}#icon-cancel-circle`));
+                // setStatusbar(new Statusbar_model(true, error.data.err, `${icon_success}#icon-cancel-circle`, 'error'));
+            } else {
+                setModal(new Modal_model(true, 'Error', <h1>Unexpected error occured.</h1>, `${icon_success}#icon-cancel-circle`));
             }
-            console.log(error)
         } finally {
             setSpinner(false);
         }
@@ -55,7 +60,7 @@ const Signup = () => {
                 <form className='signupForm' onSubmit={(e) => signupfunc(e)}>
                     <div className='signupwrapper__box-forminput--wrapper'>
                         <div className='signupwrapper__box-forminput--label'>Email</div>
-                        <input className='signupwrapper__box-forminput--field' type='text'
+                        <input className='signupwrapper__box-forminput--field' type='email'
                             value={formvalues.email} placeholder='Email' name='email' required maxLength='50'
                             onChange={(e) => setFormvalues({ [e.target.name]: e.target.value, password: formvalues.password, username: formvalues.username })} />
                     </div>
@@ -74,7 +79,8 @@ const Signup = () => {
                         <span style={{color:'#f73c3c'}}>Minimum eight characters, at least one letter and one number</span>
                     </div>
                     <div>
-                        <input className='signupwrapper__box-forminput--submit' type='submit' />
+                        {/* <input className='signupwrapper__box-forminput--submit' type='submit' /> */}
+                        <button className='signupwrapper__box-forminput--submit' type='submit'> Sign Up </button>
                     </div>
                     {spinner && <Spinner />}
                 </form>

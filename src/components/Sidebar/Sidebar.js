@@ -11,7 +11,7 @@ function Sidebar() {
         {
             name: 'hotel',
             iconName: '#icon-home',
-            pathname: '/hotel'
+            pathname: '/hotels'
         },
         {
             name: 'flight',

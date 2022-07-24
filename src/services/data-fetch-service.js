@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const base_url = 'http://127.0.0.1:5000';
+// const base_url = 'http://127.0.0.1:5000';
+const base_url = 'https://trillo-react.herokuapp.com';
 
 const _urlSignup = base_url + '/register';
 const _urlLogin = base_url + '/login';

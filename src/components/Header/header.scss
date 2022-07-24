@@ -37,6 +37,26 @@
             background-color: var(--color-grey-light-2);
         }
 
+        &__type {
+            border: none;
+            outline: none;
+            color: inherit;
+            transform: translateX(9rem);
+            background: transparent;
+            // transition: all .3s;
+
+            option {
+                border: none;
+                outline: none;
+                color: inherit;
+                background-color: inherit;
+
+                &:hover {
+                    color: black;
+                }
+            }
+        }
+
         &__input {
             font-family: inherit;
             font-size: inherit;
@@ -48,6 +68,8 @@
             width: 90%;
             transition: all .2s;
             margin-right: -3.25rem;
+            // margin-left: 3rem;
+            // padding-left: 10rem;
 
             &:focus {
                 outline: none;
@@ -112,7 +134,7 @@
         &__icon-box {
             position: relative;
 
-            &:hover + .nav-content {
+            &:hover+.nav-content {
                 visibility: visible;
                 height: 15rem;
             }

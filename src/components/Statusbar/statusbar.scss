@@ -1,9 +1,11 @@
 .statusbar {
     position: absolute;
-    width: 100%;
+    // width should be 100% for smaller screens
+    width: 95%;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10000;
 
     &-success {
         background-color: var(--color-green-dark-1);
@@ -17,7 +19,23 @@
         color: var(--color-grey-light-1);
         padding: 1rem;
         font-size: 1.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
     }
 
     &__text {}
+
+    &__icon {
+        width: 4.5rem;
+        height: 4.5rem;
+        fill: var(--color-grey-light-1);
+    }
+
+    &__closeicon {
+        width: 2.5rem;
+        height: 2.5rem;
+        fill: var(--color-grey-light-1);
+    }
 }

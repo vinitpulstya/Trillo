@@ -13,9 +13,9 @@ export function useStatusbar() {
     return useContext(StatusbarContext);
 }
 
-export function ModalProvider({ children }) {
+export function AppStateProvider({ children }) {
     const [modaldata, setModaldata] = useState(new Modal_model(false, '', '', '', ''));
-    const [statusbardata, setStatusbardata] = useState(new Statusbar_model(false, '', ''));
+    const [statusbardata, setStatusbardata] = useState(new Statusbar_model(false, '', '', ''));
 
     function setModal(new_modal) {
         setModaldata(new_modal);
