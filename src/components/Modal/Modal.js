@@ -1,14 +1,14 @@
 import './modal.scss';
-import { useModal } from '../../services/AppstateContext';
+import { useAppState } from '../../services/AppstateContext';
 import { Modal_model } from '../../models/Modal';
 import { useEffect, useState } from 'react';
 
 const Modal = () => {
 
     const [modalclass, setModalClass] = useState('modal__wrapper');
-    const modal = useModal();
-    const modaldata = modal.value;
-    const setModaldata = modal.func;
+    const appState = useAppState();
+    const modaldata = appState.modal;
+    const setModaldata = appState.setModal;
 
     useEffect(
         () => {
@@ -20,7 +20,7 @@ const Modal = () => {
                     setModalClass('modal__wrapper');
                 }
             }, 100)
-        }, [modal, modaldata]
+        }, [modaldata]
     );
 
 

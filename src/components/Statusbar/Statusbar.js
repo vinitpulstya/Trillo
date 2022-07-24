@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { Statusbar_model } from '../../models/Statusbar_model';
-import { useStatusbar } from '../../services/AppstateContext';
+import { useAppState } from '../../services/AppstateContext';
 import './statusbar.scss';
 import sprite from '../../img/sprite.svg';
 
 const Statusbar = () => {
-    const statusbar = useStatusbar();
-    const statusbardata = statusbar.value;
-    const setStatusbardata = statusbar.func;
+    const appState = useAppState();
+    const statusbardata = appState.statusbar;
+    const setStatusbardata = appState.setStatusbar;
 
     useEffect(
         () => {

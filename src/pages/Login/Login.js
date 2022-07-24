@@ -3,7 +3,7 @@ import logo from '../../img/logo.png';
 import icon_success from '../../img/SVG/check_circle_outline.svg';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useModal, useStatusbar } from '../../services/AppstateContext';
+import { useAppState } from '../../services/AppstateContext';
 import { Modal_model } from '../../models/Modal';
 import { login } from '../../services/data-fetch-service';
 import { getSHA256 } from '../../utils/utils';
@@ -12,10 +12,9 @@ import Spinner from '../../components/Spinner/Spinner';
 import { Statusbar_model } from '../../models/Statusbar_model';
 
 const Login = () => {
-    const modal = useModal();
-    const statusbar = useStatusbar();
-    const setModal = modal.func;
-    const setStatusbar = statusbar.func;
+    const appState = useAppState();
+    const setModal = appState.setModal;
+    const setStatusbar = appState.setStatusbar;
     const navigate = useNavigate();
 
     const [spinner, setSpinner] = useState(false);

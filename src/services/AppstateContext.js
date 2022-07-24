@@ -2,16 +2,16 @@ import React, { useState, useContext } from "react";
 import { Modal_model } from "../models/Modal";
 import { Statusbar_model } from "../models/Statusbar_model";
 
-const ModalContext = React.createContext();
-const StatusbarContext = React.createContext();
+const AppStateContext = React.createContext();
+// const StatusbarContext = React.createContext();
 
-export function useModal() {
-    return useContext(ModalContext);
+export function useAppState() {
+    return useContext(AppStateContext);
 }
 
-export function useStatusbar() {
-    return useContext(StatusbarContext);
-}
+// export function useStatusbar() {
+//     // return useContext(StatusbarContext);
+// }
 
 export function AppStateProvider({ children }) {
     const [modaldata, setModaldata] = useState(new Modal_model(false, '', '', '', ''));
@@ -26,10 +26,10 @@ export function AppStateProvider({ children }) {
     }
 
     return (
-        <ModalContext.Provider value={{value: modaldata, func: setModal}}>
-            <StatusbarContext.Provider value={{value: statusbardata, func: setStatusbar}}>
+        <AppStateContext.Provider value={{modal: modaldata, setModal: setModal, statusbar: statusbardata, setStatusbar: setStatusbar}}>
+            {/* <StatusbarContext.Provider value={{value: statusbardata, func: setStatusbar}}> */}
                 {children}
-            </StatusbarContext.Provider>
-        </ModalContext.Provider>
+            {/* </StatusbarContext.Provider> */}
+        </AppStateContext.Provider>
     )
 }

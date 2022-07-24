@@ -9,7 +9,7 @@ function Sidebar() {
 
     const navArr = [
         {
-            name: 'hotel',
+            name: 'hotels',
             iconName: '#icon-home',
             pathname: '/hotels'
         },
